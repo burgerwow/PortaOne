@@ -20,7 +20,7 @@ for word in words:  # для кожного слова у списку
 
 # print(d)
 
-for key, value in d.items():  # перше значення у словнику, де value = 0, це той знак, що нам потрібен
+for key, value in d.items():  # перше значення у словнику, де value = 1, це той знак, що нам потрібен
     if d[key] == 1:
         print(f'{key}')
         break
