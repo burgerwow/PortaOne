@@ -1,0 +1,26 @@
+from collections import OrderedDict
+
+string = 'The Tao gave birth to machine language.  Machine language gave birth\nto the assembler.\nThe assembler gave birth to the compiler.  Now there are ten thousand\nlanguages.\nEach language has its purpose, however humble.  Each language\nexpresses the Yin and Yang of software.  Each language has its place within\nthe Tao.\nBut do not program in COBOL if you can avoid it.\n        -- Geoffrey James, "The Tao of Programming"'
+string1 = 'C makes it easy for you to shoot yourself in the foot. C++ makes that harder, but when you do, it blows away your whole leg. (с) Bjarne Stroustrup'
+
+words = string1.split()  # розбиваємо стрінгу на список слів по пробілу
+# print(words)
+d = OrderedDict()  # створюємо словник, який контролює порядок додвавання ключ-значення
+
+for word in words:  # для кожного слова у списку
+    while len(word) != 0:  # до момента поки довжина слова не стане рівна нулю
+        if word[0] not in word[1:] and word[0] not in d:  # якщо буква є унікальною у слові і її немає у нашому словнику
+            d[word[0]] = 0  # створити словник де ключ - ця буква, а value = 0
+            break
+        elif word[0] not in word[1:] and word[0] in d:  # якщо таке значення є у словнику, то додати +1 до value
+            d[word[0]] += 1
+            break
+        else:
+            word = word[1:]  # якщо така буква у слові є, то ми видкидаємо цю букві зі строки
+
+# print(d)
+
+for key, value in d.items():  # перше значення у словнику, де value = 0, це той знак, що нам потрібен
+    if d[key] == 0:
+        print(f'{key}')
+        break
